@@ -1,7 +1,8 @@
 import os
-import httplib
 import re
-from threading import Timer
+import time
+import httplib
+
 
 find_song = re.compile("^var gimpdata=\"([^~]+)~\d+~([^~]+)~") 
 
@@ -18,8 +19,10 @@ def read_song():
 		os.execl("/usb/bin/dcop","dcop","kded","kmilod","displayText","\""+msg+"\"")
 
 if __name__ == "__main__":
-	read_song()
-	t = Timer(120.0,read_song)
-	t.start
+	while(1):
+		time.sleep(120)
+		read_song()
+
+
 
 	

@@ -1,8 +1,7 @@
-import dbus
-import httplib
 import re
-
-from threading import Timer
+import dbus
+import time
+import httplib
 
 find_song = re.compile("^var gimpdata=\"([^~]+)~\d+~([^~]+)~") 
 
@@ -21,8 +20,7 @@ def read_song():
 		error = osd.showMessage(msg, 5000, dbus_interface="pt.inescporto.telecom.GnomeOSD")
 
 if __name__ == "__main__":
-	read_song()
-	t = Timer(120.0,read_song)
-	t.start()
-
+	while(1):
+		time.sleep(120)
+		read_song()
 	
